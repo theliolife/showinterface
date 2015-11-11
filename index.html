@@ -9,19 +9,31 @@
     <title></title>
 </head>
 <body>
+<h1 class="h1">接口</h1>
+<div class="container">
+    <div class="row">
+        <div class="well-sm well" style="position: relative;">
+            <input type="text" placeholder="输入查询的接口" class="form-control">
+            <button class="btn btn-info" style="position: absolute;right: 0; top: 9px; border-radius: 0 8px 8px 0;margin-right: 6px;">搜索</button>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-3">
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            <button class="btn btn-primary" style="width: 100%;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 Button with data-target
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="well">
-                    ...
+                    <ul class="list-group">
+                        <li class="list-group-item">功能</li>
+                    </ul>
                 </div>
+                <button class="glyphicon glyphicon-log-in btn btn-info" style="width: 100%;"></button>
             </div>
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9" style="padding: 0;">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">

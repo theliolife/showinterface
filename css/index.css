@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#board_list > li:hover{
+    box-shadow: 0px 0px 2px #333;
+    text-align: center;
+    font-weight: 800;
+    -webkit-transition: ease-in 0.4s;
+    -moz-transition: ease-in 0.4s;
+    -ms-transition: ease-in 0.4s;
+    -o-transition: ease-in 0.4s;
+    transition: ease-in 0.4s;
+}

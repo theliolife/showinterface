@@ -6,39 +6,78 @@
     <meta http-equiv="X-UA-Compatible" content="IE=5; IE=8">
     <link rel="stylesheet" href="tools/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="tools/material-design-lite/material.min.css"/>
+    <link rel="stylesheet" href="css/index.css">
     <title></title>
 </head>
 <body ms-controller="index">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Interface</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">img <span class="sr-only">(current)</span></a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">提交</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" type="button" data-toggle="modal" data-target="#loginModal">{{loginName}}</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Lio</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Anna</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <h1 class="h1">{{inter}}</h1>
 <div class="container">
     <div class="row">
         <div class="well-lg well" style="position: relative;" id="search_model_main">
-            <input type="text" placeholder="输入查询的接口" class="form-control" id="modelSearchinput">
-            <button class="btn btn-info" style="position: absolute;right: 0; top: 24px; border-radius: 0 4px 4px 0;margin-right: 6px;" id="addFunctionmodel">搜索</button>
+            <input type="text" placeholder="输入查询的接口" class="form-control" id="modelSearchinput" ms-attr-value="model_search_value">
+            <button class="btn btn-info" style="position: absolute;right: 0; top: 24px; border-radius: 0 4px 4px 0;margin-right: 10px; width: 100px;" id="addFunctionmodel">搜索</button>
             <ul class="list-group" id="model_search">
-                <li class="list-group-item" ms-repeat="model_search_res">{{el['function_name']}}</li>
+                <li class="list-group-item" ms-repeat="model_search_res" ms-click-1="model_search_select">{{el['function_name']}}</li>
             </ul>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3" style="margin-bottom: 6px;">
             <button class="btn btn-primary" style="width: 100%;" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
+                项目
             </button>
             <div class="collapse" id="collapseExample">
                 <div class="well" style="padding: 19px 0;">
-                    <ul class="list-group">
-                        <li class="list-group-item" style="border-radius: 0px; border-left: none;border-right: none; cursor: pointer;">功能</li>
+                    <ul class="list-group" id="board_list">
+                        <li class="list-group-item" id="ajax_test" style="border-radius: 0px; border-left: none;border-right: none; cursor: pointer;">海信管理</li>
                     </ul>
                 </div>
                 <button class="glyphicon glyphicon-cloud btn btn-info" style="width: 100%; margin-bottom:6px;" data-toggle="modal" data-target=".bs-example-modal-lg"></button>
-                <button class="glyphicon glyphicon-log-in btn btn-info" id="ajax_test" style="width: 100%;"></button>
+                <!--<button class="glyphicon glyphicon-log-in btn btn-info" id="" style="width: 100%; margin-bottom:6px;"></button>-->
+                <button class="glyphicon glyphicon-log-in btn btn-info" id="test" style="width: 100%;"></button>
             </div>
         </div>
         <div class="col-lg-9" style="padding: 0;" id="show_interface_main">
-                <div class="panel panel-default" ms-repeat="repeatText">
+                <div class="panel panel-default" ms-repeat="repeatText" style="margin-bottom: 6px;">
                     <div class="panel-heading" role="tab" ms-attr-id="heading{{$index}}">
                         <h4 class="panel-title">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
@@ -89,6 +128,34 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- login Modal -->
+<div class="modal fade bs-example-modal-sm" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="recipient-name" class="control-label">Username:</label>
+                <input type="text" class="form-control" id="user_name">
+            </div>
+            <div class="form-group">
+                <label for="recipient-name" class="control-label">password:</label>
+                <input type="text" class="form-control" id="password_value">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="login_submit">登录</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 <script type="text/javascript" src="tools/bootstrap/js/jquery-2.1.1.min.js"></script>

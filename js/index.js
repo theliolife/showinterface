@@ -7,7 +7,12 @@ avalon.ready(function() {
         w: '请输入用户名',
         inter: '接口',
         repeatText:[],
+        loginName:'登录',
         model_search_res:[],
+        'model_search_select':function(){
+            vm.model_search_value=$(this).text();
+        },
+        'model_search_value':'',
         click: function () {
             vm.w = parseFloat(vm.w) + 10;
             vm.h = parseFloat(vm.h) + 10;
@@ -91,6 +96,29 @@ avalon.ready(function() {
                 console.log(err);
             }
         })
+    });
+
+    $("#test").click(function(){
+        var val_word='bus';
+        var mm=$("#show_interface_main").find("a:contains('"+val_word+"')");
+        var top = mm.parent().parent().parent().parent().offset().top;
+        $("html,body").animate({scrollTop:top},600);
+        console.log(top);
+    });
+
+    $("#login_submit").click(function(){
+        $.ajax({
+            'url':'',
+            dataType:'json',
+            Type:'text',
+            beforeSend:function(){},
+            success:function(data){
+                console.log(data);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        });
     });
     avalon.scan();
 

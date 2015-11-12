@@ -8,13 +8,16 @@
     <link rel="stylesheet" href="tools/material-design-lite/material.min.css"/>
     <title></title>
 </head>
-<body>
-<h1 class="h1">接口</h1>
+<body ms-controller="index">
+<h1 class="h1">{{inter}}</h1>
 <div class="container">
     <div class="row">
-        <div class="well-sm well" style="position: relative;">
-            <input type="text" placeholder="输入查询的接口" class="form-control">
-            <button class="btn btn-info" style="position: absolute;right: 0; top: 9px; border-radius: 0 8px 8px 0;margin-right: 6px;">搜索</button>
+        <div class="well-lg well" style="position: relative;" id="search_model_main">
+            <input type="text" placeholder="输入查询的接口" class="form-control" id="modelSearchinput">
+            <button class="btn btn-info" style="position: absolute;right: 0; top: 24px; border-radius: 0 4px 4px 0;margin-right: 6px;" id="addFunctionmodel">搜索</button>
+            <ul class="list-group" id="model_search">
+                <li class="list-group-item" ms-repeat="model_search_res">{{el['function_name']}}</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -25,55 +28,27 @@
                 Button with data-target
             </button>
             <div class="collapse" id="collapseExample">
-                <div class="well">
+                <div class="well" style="padding: 19px 0;">
                     <ul class="list-group">
-                        <li class="list-group-item">功能</li>
+                        <li class="list-group-item" style="border-radius: 0px; border-left: none;border-right: none; cursor: pointer;">功能</li>
                     </ul>
                 </div>
-                <button class="glyphicon glyphicon-log-in btn btn-info" style="width: 100%;"></button>
+                <button class="glyphicon glyphicon-cloud btn btn-info" style="width: 100%; margin-bottom:6px;" data-toggle="modal" data-target=".bs-example-modal-lg"></button>
+                <button class="glyphicon glyphicon-log-in btn btn-info" id="ajax_test" style="width: 100%;"></button>
             </div>
         </div>
-        <div class="col-lg-9" style="padding: 0;">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
+        <div class="col-lg-9" style="padding: 0;" id="show_interface_main">
+                <div class="panel panel-default" ms-repeat="repeatText">
+                    <div class="panel-heading" role="tab" ms-attr-id="heading{{$index}}">
                         <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Collapsible Group Item #1
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
+                                {{el['function_name']}}
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
                         <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Collapsible Group Item #2
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Collapsible Group Item #3
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            {{$index}}{{el['interface_detail']}}
                         </div>
                     </div>
                 </div>
@@ -82,8 +57,45 @@
     </div>
 
 </div>
+
+
+<!--add function-->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">功能名称:</label>
+                        <input type="text" class="form-control" id="add_function_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">路径:</label>
+                        <input type="text" class="form-control" id="add_function_path">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">详情:</label>
+                        <textarea class="form-control" id="add_function_detail"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="addFunctionclose">关闭</button>
+                <button type="button" class="btn btn-primary" id="addFunction">添加接口</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <script type="text/javascript" src="tools/bootstrap/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="tools/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="tools/material-design-lite/material.min.js"></script>
+<script type="text/javascript" src="tools/avalon/avalon.js"></script>
+<script type="text/javascript" src="tools/avalon/mmRouter.js"></script>
+<script type="text/javascript" src="tools/avalon/mmHistory.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </html>

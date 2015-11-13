@@ -11,6 +11,7 @@ avalon.ready(function() {
         model_search_res:[],
         'model_search_select':function(){
             vm.model_search_value=$(this).text();
+            $("#model_search").fadeOut();
         },
         'model_search_value':'',
         click: function () {
@@ -18,107 +19,171 @@ avalon.ready(function() {
             vm.h = parseFloat(vm.h) + 10;
         }
     });
+    function setCookie(name,value)
+    {
+        var Days = 1;
+        var exp = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ value + ";expires=" + exp.toGMTString();
+    }
+
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+
+    function delCookie(name)
+    {
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getCookie(name);
+        if(cval!=null)
+            document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    }
+
+    var cookiename = getCookie('username');
+    if(cookiename){
+        vm.loginName=cookiename;
+    }
 
     $("#ajax_test").click(function(){
-        $.ajax({  //这里会发出两次请来
-            async:false,
-            type: "get",
-            dataType:'json',
-            data:{},
-            url: "php/search_interface_ajax.php",
-            beforeSend:function(){
-                //
-            },
-            success: function(data){
-                console.log(data);
-                for(var i in data){
-                    if(1){
-                        vm.repeatText = data.reverse()
-                    };
-                    console.log(data.repeatText);
-                    console.log(vm);
-                    avalon.scan(document.getElementById("show_interface_main"));
+        if(getCookie('username')){
+            $.ajax({
+                async:false,
+                type: "get",
+                dataType:'json',
+                data:{},
+                url: "php/search_interface_ajax.php",
+                beforeSend:function(){
+                    //
+                },
+                success: function(data){
+                    console.log(data);
+                    for(var i in data){
+                        if(1){
+                            vm.repeatText = data.reverse();
+                        };
+                        console.log(data.repeatText);
+                        console.log(vm);
+                        avalon.scan(document.getElementById("show_interface_main"));
+                    }
+                },
+                error:function(err){
+                    console.log(err);
                 }
-            },
-            error:function(err){
-                console.log(err);
-            }
-        })
+            });
+        }else{
+            alert("请登录");
+        }
     });
     $("#addFunction").click(function(){
-        $.ajax({
-            url:'php/add_interface.php',
-            dataType:'text',
-            Type:'get',
-            data:{
-                'function_name':$("#add_function_name").val(),
-                'path':$("#add_function_path").val(),
-                'interface_detail':$("#add_function_detail").val()
-            },
-            beforeSend:function(){
-                //
-            },
-            success:function(data){
-                console.log(data);
-                vm.repeatText.push({
+        if(getCookie('username')){
+            $.ajax({
+                url:'php/add_interface.php',
+                dataType:'text',
+                Type:'get',
+                data:{
                     'function_name':$("#add_function_name").val(),
                     'path':$("#add_function_path").val(),
                     'interface_detail':$("#add_function_detail").val()
-                });
-                $("#addFunctionclose").click();
-                avalon.scan(document.getElementById("show_interface_main"));
-            },
-            error:function(err){
-                console.log(err);
-            }
-        })
+                },
+                beforeSend:function(){
+                    //
+                },
+                success:function(data){
+                    console.log(data);
+                    vm.repeatText.push({
+                        'function_name':$("#add_function_name").val(),
+                        'path':$("#add_function_path").val(),
+                        'interface_detail':$("#add_function_detail").val()
+                    });
+                    $("#addFunctionclose").click();
+                    avalon.scan(document.getElementById("show_interface_main"));
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        }else{
+            alert("请登录");
+        }
     });
 
     $("#addFunctionmodel").click(function(){
+        if(getCookie('username')){
+            $.ajax({
+                url:'php/model_search.php',
+                dataType:'json',
+                Type:'get',
+                data:{
+                    'function_name':$("#modelSearchinput").val()
+                },
+                beforeSend:function(){
+                    //
+                },
+                success:function(data){
+                    console.log(data);
+                    $("#model_search").fadeIn();
+                    vm.model_search_res=data;
+                    avalon.scan(document.getElementById('search_model_main'));
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            });
+        }else{
+            alert("请登录");
+        }
 
-        $.ajax({
-            url:'php/model_search.php',
-            dataType:'json',
-            Type:'get',
-            data:{
-                'function_name':$("#modelSearchinput").val()
-            },
-            beforeSend:function(){
-                //
-            },
-            success:function(data){
-                console.log(data);
-
-                vm.model_search_res=data;
-                avalon.scan(document.getElementById('search_model_main'));
-            },
-            error:function(err){
-                console.log(err);
-            }
-        })
     });
 
-    $("#test").click(function(){
-        var val_word='bus';
+    $("#model_search").delegate('li','click',function(){
+        var val_word=$(this).text();
+        console.log(val_word);
         var mm=$("#show_interface_main").find("a:contains('"+val_word+"')");
-        var top = mm.parent().parent().parent().parent().offset().top;
+        var top = mm.offset().top;
         $("html,body").animate({scrollTop:top},600);
         console.log(top);
     });
 
     $("#login_submit").click(function(){
+        var that=$(this);
         $.ajax({
-            'url':'',
+            'url':'php/login.php',
             dataType:'json',
-            Type:'text',
+            Type:'get',
+            data:{
+                'username':$("#user_name").val(),
+                'password':$("#password_value").val()
+            },
             beforeSend:function(){},
             success:function(data){
                 console.log(data);
+                if(data['status']==1){
+                    that.prev().click();
+                    setCookie('username',data['username']);
+                    console.log(getCookie('username'));
+                    sessionStorage.setItem('username',getCookie('username'));
+                }
+                if(data['cn_name']){
+                    vm.loginName=data['cn_name'];
+                }else{
+                    vm.loginName=data['username'];
+                }
             },
             error:function(err){
                 console.log(err);
             }
         });
+    });
+
+    $("#layout").click(function(){
+        delCookie('username');
+        vm.loginName='登陆';
     });
     avalon.scan();
 

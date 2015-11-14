@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2015-11-14 18:37:50
+Date: 2015-11-14 23:10:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,26 +48,15 @@ CREATE TABLE `showinterfacetable` (
   `modify_time` datetime DEFAULT NULL,
   `extra` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `create_person` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
-  `modify_person` varchar(40) CHARACTER SET utf8 DEFAULT NULL,
+  `modify_person` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `version` tinyint(10) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of showinterfacetable
 -- ----------------------------
-INSERT INTO `showinterfacetable` VALUES ('1', 'bus_modify', 'qwe/asd', '123test', '2015-11-11 22:27:06', '2015-11-11 22:27:10', '备注', 'lio', 'lio');
-INSERT INTO `showinterfacetable` VALUES ('2', 'bus_create', 'asd/qwe', '123test2', '2015-11-11 22:27:57', '2015-11-11 22:28:01', '备注2', 'anna', 'anna');
-INSERT INTO `showinterfacetable` VALUES ('13', 'bus_del', 'php/del_bus.php', '123123123', '2015-11-12 09:28:59', '2015-11-12 09:28:59', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('14', 'bus_fix', 'dawdwad', 'adwadwa', '2015-11-13 08:37:42', '2015-11-13 08:37:42', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('15', 'bus_lio', 'qwe12312', 'daad', '2015-11-13 09:14:17', '2015-11-13 09:14:17', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('16', 'test', 'awd', 'daww', '2015-11-13 09:52:25', '2015-11-13 09:52:25', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('17', 'test', 'awd', 'daww', '2015-11-13 09:52:29', '2015-11-13 09:52:29', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('18', 'test', 'awd', 'daww', '2015-11-13 09:52:33', '2015-11-13 09:52:33', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('19', 'test', 'awd', 'daww', '2015-11-13 09:52:35', '2015-11-13 09:52:35', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('20', 'test', 'awd', 'daww', '2015-11-13 09:52:37', '2015-11-13 09:52:37', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('21', 'test', 'awd', 'daww', '2015-11-13 09:52:39', '2015-11-13 09:52:39', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('22', 'test', 'awd', 'daww', '2015-11-13 09:52:40', '2015-11-13 09:52:40', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('23', 'test', 'awd', 'daww', '2015-11-13 09:52:42', '2015-11-13 09:52:42', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('24', 'test', 'awd', 'daww', '2015-11-13 09:52:46', '2015-11-13 09:52:46', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('25', 'test', 'awd', 'daww', '2015-11-13 09:52:48', '2015-11-13 09:52:48', '备注默认', 'Lio', 'Lio');
-INSERT INTO `showinterfacetable` VALUES ('26', 'test', 'awd', 'daww', '2015-11-13 09:52:52', '2015-11-13 09:52:52', '备注默认', 'Lio', 'Lio');
+INSERT INTO `showinterfacetable` VALUES ('2', 'bus_create', 'asd/qwe', '123test2', '2015-11-11 22:27:57', '2015-11-11 22:28:01', '备注2', 'anna', 'anna', '1');
+INSERT INTO `showinterfacetable` VALUES ('13', 'bus_del', 'php/del_bus.php', '123123123', '2015-11-12 09:28:59', '2015-11-12 09:28:59', '备注默认', 'Lio', 'Lio', '1');
+INSERT INTO `showinterfacetable` VALUES ('14', 'bus_fix', 'dawdwad', 'adwadwa', '2015-11-13 08:37:42', '2015-11-13 08:37:42', '备注默认', 'Lio', 'Lio', '1');
+INSERT INTO `showinterfacetable` VALUES ('15', 'bus_lio', 'qwe12312', 'daad', '2015-11-13 09:14:17', '2015-11-13 09:14:17', '备注默认', 'Lio', 'Lio', '1');

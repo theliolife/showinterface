@@ -44,6 +44,13 @@ avalon.ready(function() {
         if(cval!=null)
             document.cookie= name + "="+cval+";expires="+exp.toGMTString();
     }
+    var show_information = function(type,text){
+        $('#'+type).text().fadeIn();
+        var information = setTimeout(function(){
+            $('#'+type).fadeOut();
+            clearTimeout(information);
+        },1000);
+    };
 
     var cookiename = getCookie('username');
     if(cookiename){
@@ -138,7 +145,6 @@ avalon.ready(function() {
         }else{
             alert("请登录");
         }
-
     });
 
     $("#model_search").delegate('li','click',function(){
@@ -179,6 +185,18 @@ avalon.ready(function() {
                 console.log(err);
             }
         });
+    });
+
+    $("#manage_record").click(function(){
+        $("#show_interface_main").find('b').toggle();
+    });
+    $("#show_interface_main").delegate('b','click',function(){
+        if(getCookie('username')){
+            $.ajax({
+                url:'',
+                
+            });
+        }
     });
 
     $("#layout").click(function(){

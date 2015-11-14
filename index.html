@@ -73,23 +73,22 @@
                     </ul>
                 </div>
                 <button class="glyphicon glyphicon-cloud btn btn-info" style="width: 100%; margin-bottom:6px;" data-toggle="modal" data-target=".bs-example-modal-lg"></button>
-                <!--<button class="glyphicon glyphicon-log-in btn btn-info" id="" style="width: 100%; margin-bottom:6px;"></button>-->
-                <button class="glyphicon glyphicon-log-in btn btn-info" id="test" style="width: 100%;"></button>
+                <button class="glyphicon glyphicon-scissors btn btn-info" id="manage_record" style="width: 100%; margin-bottom:6px;"></button>
             </div>
         </div>
         <div class="col-lg-9" style="padding: 0;" id="show_interface_main">
-                <div class="panel panel-default" ms-repeat="repeatText" style="margin-bottom: 6px;">
-                    <div class="panel-heading" role="tab" ms-attr-id="heading{{$index}}">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
-                                {{el['function_name']}}
-                            </a>
-                        </h4>
-                    </div>
-                    <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
-                        <div class="panel-body">
-                            {{$index}}{{el['interface_detail']}}
-                        </div>
+            <div class="panel panel-default" ms-repeat="repeatText" style="margin-bottom: 6px;">
+                <div class="panel-heading" role="tab" ms-attr-id="heading{{$index}}">
+                    <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
+                            {{el['function_name']}}
+                        </a>
+                        <b class="label label-warning pull-right" style="display:none;padding: 8px 1px; cursor: pointer;">删除记录</b>
+                    </h4>
+                </div>
+                <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
+                    <div class="panel-body">
+                        {{$index}}{{el['interface_detail']}}
                     </div>
                 </div>
             </div>
@@ -158,6 +157,11 @@
     </div>
   </div>
 </div>
+<!--警告框-->
+<div class="alert alert-success" role="alert" id="alert-success">...</div>
+<div class="alert alert-info" role="alert" id="alert-info">...</div>
+<div class="alert alert-warning" role="alert" id="alert-warning">...</div>
+<div class="alert alert-danger" role="alert" id="alert-danger">...</div>
 </body>
 <script type="text/javascript" src="tools/bootstrap/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="tools/bootstrap/js/bootstrap.min.js"></script>

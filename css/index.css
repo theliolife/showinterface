@@ -12,3 +12,9 @@
     -o-transition: ease-in 0.4s;
     transition: ease-in 0.4s;
 }
+#alert-success,#alert-info,#alert-warning,#alert-danger{
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    display: none;
+}

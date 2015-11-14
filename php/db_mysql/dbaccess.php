@@ -80,9 +80,7 @@ class DB {
 		$res=mysql_affected_rows();
 		if ($res){
 			return true;
-			
 		}else {
-			
 			return false;
 			
 		}

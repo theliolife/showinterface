@@ -188,13 +188,66 @@ avalon.ready(function() {
     });
 
     $("#manage_record").click(function(){
-        $("#show_interface_main").find('b').toggle();
+        $("#show_interface_main").find('b').toggle().end().find('span').toggle();
     });
     $("#show_interface_main").delegate('b','click',function(){
+        var that=$(this);
         if(getCookie('username')){
             $.ajax({
-                url:'',
-                
+                url:'php/del_interface.php',
+                dataType:'text',
+                Type:'get',
+                data:{
+                    'id':that.find("i").text()
+                },
+                beforeSend:function(){
+                    //
+                },
+                success:function(data){
+                    console.log(data);
+                    if(data==1){
+                        that.parentsUntil("#show_interface_main","div.panel-default").fadeOut(400);
+                        setTimeout(function(){
+                            vm.repeatText.splice(that.index()-1,1);
+                        },400);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+        }
+    });
+
+    $("#show_interface_main").delegate('span','click',function(){
+        var that=$(this);
+        $("#fixFunction").removeClass('disabled');
+        $("#addinterfavebtn").click();
+        $("#add_function_name").val(that.prev().prev().text());
+        $("#add_function_path").val(that.parent().parent().next().find("div").text());
+        if(getCookie('username')&&0){
+            $.ajax({
+                url:'php/fix_interface.php',
+                dataType:'text',
+                Type:'get',
+                data:{
+                    'id':that.find("i").text()
+                },
+                beforeSend:function(){
+                    //
+                },
+                success:function(data){
+                    console.log(data);
+                    if(data==1){
+                        that.parentsUntil("#show_interface_main","div.panel-default").fadeOut(400);
+                        setTimeout(function(){
+                            vm.repeatText.splice(that.index()-1,1);
+                        },400);
+                    }
+                },
+                error:function(error){
+                    console.log(error);
+                }
             });
         }
     });

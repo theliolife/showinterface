@@ -8,8 +8,8 @@ if(empty($_GET['function_name'])&&empty($__GET['path'])){
 	echo 2;//空值
 }else{
 	$db = new DB ();
-	$_SESSION['user']['number'] = 'Lio';
-	$_SESSION['user']['modify_person']='Lio';
+	$_SESSION['user']['number'] = $_SESSION['user']['name'];
+	$_SESSION['user']['modify_person']= $_SESSION['user']['name'];
 
 	$call['function_name']=$_GET['function_name'];
 	$call['path']=$_GET['path'];

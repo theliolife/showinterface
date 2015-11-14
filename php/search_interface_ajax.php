@@ -8,7 +8,7 @@ $db = new DB ();
 $username = 'lio';
 $password = 123;
 
-$sql = "select * from showinterfacetable";
+$sql = "select * from showinterfacetable where version=1";
 $result= $db->execsql( $sql );
 
 $num=count($result);

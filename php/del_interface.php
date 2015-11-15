@@ -4,7 +4,7 @@ require_once '../php/db_mysql/dbaccess.php';
 // error_reporting(0);
 session_start ();
 
-if(!$_SESSION['user']['name']&&$_GET['id']){
+if(!$_GET['id']){
 	echo 2;//空值
 }else{
 	$db = new DB ();

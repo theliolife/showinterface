@@ -80,13 +80,13 @@
             <div class="panel panel-default" ms-repeat="repeatText" style="margin-bottom: 6px;">
                 <div class="panel-heading" role="tab" ms-attr-id="heading{{$index}}">
                     <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">{{el['function_name']}}</a>
+                        <a class="collapsed btn btn-success" role="button" data-toggle="collapse" data-parent="#accordion" ms-attr-href="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">{{el['function_name']}}</a>
                         <b class="label label-danger pull-right" style="display:none;padding: 8px 1px; cursor: pointer; margin-left: 8px;">删除记录 <i style="display: none;">{{el['id']}}</i></b>
                         <span class="label label-warning pull-right" style="display:none;padding: 8px 1px; cursor: pointer;">修改记录 <i style="display: none;">{{el['id']}}</i></span>
                     </h4>
                 </div>
                 <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
-                    <div>
+                    <div style="overflow:hidden;">
                         <button class="badge pull-right">最后修改时间:{{el['modify_time']}}</button>
                         <button class='badge pull-right'>最后修改人:{{el['modify_person']}}</button>
                         <button class="badge pull-right">创建时间:{{el['create_time']}}</button>

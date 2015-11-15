@@ -94,6 +94,7 @@ avalon.ready(function() {
                 dataType:'text',
                 Type:'get',
                 data:{
+                    'person':getCookie('username'),
                     'function_name':$("#add_function_name").val(),
                     'path':$("#add_function_path").val(),
                     'interface_detail':$("#add_function_detail").val()
@@ -104,6 +105,7 @@ avalon.ready(function() {
                 success:function(data){
                     console.log(data);
                     vm.repeatText.push({
+                        'person':getCookie('username'),
                         'function_name':$("#add_function_name").val(),
                         'path':$("#add_function_path").val(),
                         'interface_detail':$("#add_function_detail").val()
@@ -225,7 +227,7 @@ avalon.ready(function() {
         $("#addinterfavebtn").click();
         $("#exampleModalLabelid").text(that.find("i").text());
         $("#add_function_name").val(that.prev().prev().text());
-        $("#add_function_path").val(that.parent().parent().next().find("div").text());
+        $("#add_function_path").val(that.parent().parent().next().find("div").eq(1).text());
     });
 
     $("#fixFunction").click(function(){

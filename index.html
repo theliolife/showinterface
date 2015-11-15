@@ -48,7 +48,7 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<h1 class="h1">{{inter}}</h1>
+<h1 class="h1" style="color: white;">{{inter}}</h1>
 <div class="container">
     <div class="row">
         <div class="well-lg well" style="position: relative;" id="search_model_main">
@@ -86,6 +86,7 @@
                     </h4>
                 </div>
                 <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
+                    <div><button class='badge pull-right'>最后修改人:{{el['modify_person']}}</button><button class="badge pull-right">创建人:{{el['create_person']}}</button></div>
                     <div class="panel-body">{{$index}}{{el['path']}}{{el['interface_detail']}}</div>
                 </div>
             </div>

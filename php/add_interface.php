@@ -17,8 +17,8 @@ if(empty($_GET['function_name'])&&empty($__GET['path'])){
 	$call['create_time']=date ( 'Y-m-d H:i:s', time () );
 	$call['modify_time']=date ( 'Y-m-d H:i:s', time () );
 	$call['extra']='备注默认';
-	$call['create_person']=$_SESSION['user']['name'];
-	$call['modify_person']=$_SESSION['user']['name'];
+	$call['create_person']=$_GET['person'];
+	$call['modify_person']=$_GET['person'];
 	
 	$res=$db->insert(showinterfacetable, $call);
 	if($res){

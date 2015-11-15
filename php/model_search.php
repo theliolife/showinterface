@@ -5,7 +5,7 @@ require_once '../php/db_mysql/dbaccess.php';
 // error_reporting(0);
 $db = new DB ();
 
-$sql = "select * from showinterfacetable where function_name like '%{$_GET['function_name']}%'";
+$sql = "select * from showinterfacetable where version=1 AND function_name like '%{$_GET['function_name']}%'";
 // echo $sql;die();
 $result= $db->execsql( $sql );
 

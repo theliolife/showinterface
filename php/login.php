@@ -20,7 +20,6 @@ if(empty($result)){
    $arr['cn_name']=$result['cn_name'];
    $_SESSION['user']['name'] = $result['username'];
    $arr['sessiontest'] = $_SESSION['user']['name'];
-
 }
 echo json_encode ( $arr );
 

@@ -223,15 +223,23 @@ avalon.ready(function() {
         var that=$(this);
         $("#fixFunction").removeClass('disabled');
         $("#addinterfavebtn").click();
+        $("#exampleModalLabelid").text(that.find("i").text());
         $("#add_function_name").val(that.prev().prev().text());
         $("#add_function_path").val(that.parent().parent().next().find("div").text());
-        if(getCookie('username')&&0){
+    });
+
+    $("#fixFunction").click(function(){
+        if(getCookie('username')){
             $.ajax({
                 url:'php/fix_interface.php',
                 dataType:'text',
                 Type:'get',
                 data:{
-                    'id':that.find("i").text()
+                    'id':$("#exampleModalLabelid").text(),
+                    'function_name':$("#add_function_name").val(),
+                    'path':$("#add_function_path").val(),
+                    'modify_persion': getCookie('username'),
+                    'interface_detail':$("#add_function_detail").val()
                 },
                 beforeSend:function(){
                     //
@@ -239,16 +247,17 @@ avalon.ready(function() {
                 success:function(data){
                     console.log(data);
                     if(data==1){
-                        that.parentsUntil("#show_interface_main","div.panel-default").fadeOut(400);
-                        setTimeout(function(){
-                            vm.repeatText.splice(that.index()-1,1);
-                        },400);
+                        $("#addFunctionclose").click();
+                        $("#ajax_test").click();
+                        avalon.scan(document.getElementById("show_interface_main"));
                     }
                 },
                 error:function(error){
                     console.log(error);
                 }
             });
+        }else{
+            alert("请登录");
         }
     });
 

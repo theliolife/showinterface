@@ -86,8 +86,20 @@
                     </h4>
                 </div>
                 <div ms-attr-id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" ms-attr-aria-labelledby="heading{{$idnex}}">
-                    <div><button class='badge pull-right'>最后修改人:{{el['modify_person']}}</button><button class="badge pull-right">创建人:{{el['create_person']}}</button></div>
-                    <div class="panel-body">{{$index}}{{el['path']}}{{el['interface_detail']}}</div>
+                    <div>
+                        <button class="badge pull-right">最后修改时间:{{el['modify_time']}}</button>
+                        <button class='badge pull-right'>最后修改人:{{el['modify_person']}}</button>
+                        <button class="badge pull-right">创建时间:{{el['create_time']}}</button>
+                        <button class="badge pull-right">创建人:{{el['create_person']}}</button>
+                    </div>
+                    <div class="panel-body" style="padding-bottom:0px;">
+                        <label style="margin-bottom:2px;margin-left:2px;">路径:</label>
+                        <input class="form-control" ms-attr-value="{{$index}}{{el['path']}}">
+                    </div>
+                    <div class="panel-body" style="padding-top:6px; padding-bottom:4px;">
+                        <label style="margin-bottom:2px;margin-left:2px;">参数描述:</label>
+                        <textarea class="form-control" ms-attr-value="{{el['interface_detail']}}"></textarea>
+                    </div>
                 </div>
             </div>
         </div>

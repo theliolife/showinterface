@@ -227,7 +227,8 @@ avalon.ready(function() {
         $("#addinterfavebtn").click();
         $("#exampleModalLabelid").text(that.find("i").text());
         $("#add_function_name").val(that.prev().prev().text());
-        $("#add_function_path").val(that.parent().parent().next().find("div").eq(1).text());
+        $("#add_function_path").val(that.parent().parent().next().find("div").eq(1).find("input").val());
+        $("#add_function_detail").val(that.parent().parent().next().find("div").eq(2).find("textarea").val());
     });
 
     $("#fixFunction").click(function(){

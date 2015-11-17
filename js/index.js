@@ -263,6 +263,20 @@ avalon.ready(function() {
             alert("请登录");
         }
     });
+    /*(function(){
+        if(getCookie('username')){
+            $.ajax({
+                url:'php/search_owner_projects.php',
+                dataType:'json',
+                Type:'get',
+                data:{
+                    'username':getCookie('username')
+                },
+                success:function(data){console.log("projects"+data)},
+                error:function(error){console.log(error)}
+            });
+        }else{alert("请先登录")}
+    })();*/
 
     $("#layout").click(function(){
         delCookie('username');

@@ -17,6 +17,10 @@ avalon.ready(function() {
         click: function () {
             vm.w = parseFloat(vm.w) + 10;
             vm.h = parseFloat(vm.h) + 10;
+        },
+        'top':"Top",
+        'scroll_top':function(){
+            $(document.body).animate({'scrollTop':0},400);
         }
     });
     function setCookie(name,value)

@@ -62,12 +62,15 @@ avalon.ready(function() {
     }
 
     $("#ajax_test").click(function(){
+        var data=$(this).text();
         if(getCookie('username')){
             $.ajax({
                 async:false,
                 type: "get",
                 dataType:'json',
-                data:{},
+                data:{
+                    'data':''
+                },
                 url: "php/search_interface_ajax.php",
                 beforeSend:function(){
                     //
